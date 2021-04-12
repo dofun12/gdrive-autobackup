@@ -1,0 +1,4 @@
+token.pickle
+backup
+backup/*
+config_*.ini
