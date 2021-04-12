@@ -103,6 +103,9 @@ class GDriveApi:
     def delete_file(self,file_id):
         self.service.files().delete(fileId=file_id).execute()
 
+    def remove_oldest_file(self):
+        self.delete_file(self.get_oldest_file()['id'])
+
     def get_file(self, path):
         file = open(path)
         print(os.path.basename(file.name))

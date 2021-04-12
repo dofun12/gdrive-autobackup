@@ -26,16 +26,14 @@ if __name__ == '__main__':
     gdrive_config = GDriveConfigModel(config)
     mysql_config = MysqlConfigModel(config)
 
+    gdrive_api = GDriveApi(gdrive_config)
+    list = gdrive_api.list_files()
+    if len(list) > gdrive_config.MAX_BACKUPS:
+        gdrive_api.remove_oldest_file()
+
     gbackup = Backup(mysql_config,gdrive_config)
     gbackup.init_backup()
 
-    gdrive_api = GDriveApi(gdrive_config)
 
-    gdrive_api.print_list()
-    file = gdrive_api.get_oldest_file()
-    print(f'Removing... {file}')
-    gdrive_api.delete_file(file['id'])
-    print('After...')
-    gdrive_api.print_list()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
