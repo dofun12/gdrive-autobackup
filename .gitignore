@@ -1,4 +1,4 @@
 token.pickle
 backup
-backup/*
+backup/**
 config_*.ini

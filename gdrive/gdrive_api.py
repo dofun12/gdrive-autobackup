@@ -104,6 +104,7 @@ class GDriveApi:
         self.service.files().delete(fileId=file_id).execute()
 
     def remove_oldest_file(self):
+        print('Deleting old backup from drive ',self.get_oldest_file())
         self.delete_file(self.get_oldest_file()['id'])
 
     def get_file(self, path):
